@@ -1,6 +1,8 @@
 # cl1m_inventory
 
-A new Flutter project.
+admin@gmail.com  password: user123
+sample@gmail.com password: user123
+new@gmail.com password: user123
 
 ## Getting Started
 

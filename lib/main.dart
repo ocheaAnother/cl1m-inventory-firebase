@@ -1,4 +1,5 @@
-import 'package:cl1m_inventory/screens/login_page.dart';
+import 'package:cl1m_inventory/landing_page.dart';
+import 'package:cl1m_inventory/screens/borrower/borrower_login.dart';
 import 'package:cl1m_inventory/screens/main_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignInScreen(),
+      home: LandingPage(),
     );
   }
 }

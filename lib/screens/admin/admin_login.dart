@@ -1,21 +1,23 @@
 import 'package:cl1m_inventory/reusable_widgets/reusable_widget.dart';
-import 'package:cl1m_inventory/screens/borrower_page.dart';
+import 'package:cl1m_inventory/screens/admin/admin_page.dart';
+import 'package:cl1m_inventory/screens/borrower/borrower_page.dart';
 import 'package:cl1m_inventory/screens/dashboard.dart';
 import 'package:cl1m_inventory/screens/register_user.dart';
 import 'package:cl1m_inventory/utils/color_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class AdminLogin extends StatefulWidget {
+  const AdminLogin({Key? key}) : super(key: key);
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _AdminLoginState createState() => _AdminLoginState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+class _AdminLoginState extends State<AdminLogin> {
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const BorrowerPage()));
+                            builder: (context) => const AdminPage()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });

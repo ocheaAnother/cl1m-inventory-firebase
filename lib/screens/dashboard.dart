@@ -1,4 +1,4 @@
-import 'package:cl1m_inventory/screens/login_page.dart';
+import 'package:cl1m_inventory/screens/borrower/borrower_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
             FirebaseAuth.instance.signOut().then((value) {
               print("Signed Out");
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()));
+                  MaterialPageRoute(builder: (context) => BorrowerLogin()));
             });
           },
         ),

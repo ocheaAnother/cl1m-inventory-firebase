@@ -1,7 +1,8 @@
 import 'package:cl1m_inventory/reusable_widgets/reusable_widget.dart';
-import 'package:cl1m_inventory/screens/borrower_page.dart';
+import 'package:cl1m_inventory/screens/borrower/borrower_page.dart';
 import 'package:cl1m_inventory/screens/dashboard.dart';
 import 'package:cl1m_inventory/utils/color_utils.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Email Id", Icons.person_outline, false,
+                reusableTextField("Enter Email", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -67,6 +68,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
+                    FirebaseFirestore.instance
+                        .collection('UserData')
+                        .doc(value.user!.uid)
+                        .set({"email": value.user!.email});
                     print("Created New Account");
                     Navigator.push(
                         context,

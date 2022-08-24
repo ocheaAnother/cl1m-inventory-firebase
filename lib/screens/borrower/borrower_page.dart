@@ -1,4 +1,5 @@
 import 'package:cl1m_inventory/landing_page.dart';
+import 'package:cl1m_inventory/screens/borrower/borrow/borrow.dart';
 import 'package:cl1m_inventory/screens/borrower/borrower_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -77,13 +78,13 @@ class BorrowerPage extends StatelessWidget {
                       width: 150.0,
                       height: 150.0,
                       child: InkWell(
-                        // onTap: () {
-                        //   //BUTTON ACTION
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) => const Borrow()));
-                        // },
+                        onTap: () {
+                          //BUTTON ACTION
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Borrow()));
+                        },
                         child: Card(
                           color: const Color(0xffe9692c),
                           elevation: 2.0,

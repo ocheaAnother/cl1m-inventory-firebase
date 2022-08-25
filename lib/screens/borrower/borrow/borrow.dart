@@ -104,7 +104,7 @@ class _MyHomePageState extends State<Borrow> {
         actions: [
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xffe9692c),
+              primary: const Color(0xffe9692c),
             ),
             onPressed: () => Navigator.pop(context),
             child: const Text(
@@ -114,7 +114,7 @@ class _MyHomePageState extends State<Borrow> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xffe9692c),
+              primary: const Color(0xffe9692c),
             ),
             onPressed: () {
               // agree ? _doSomething : null;

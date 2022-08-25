@@ -1,4 +1,5 @@
 import 'package:cl1m_inventory/landing_page.dart';
+import 'package:cl1m_inventory/screens/admin/item_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -75,13 +76,13 @@ class AdminPage extends StatelessWidget {
                       width: 150.0,
                       height: 150.0,
                       child: InkWell(
-                        // onTap: () {
-                        //   //BUTTON ACTION
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) => Home(1, 0)));
-                        // },
+                        onTap: () {
+                          //BUTTON ACTION
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ItemList()));
+                        },
                         child: Card(
                           color: const Color.fromARGB(225, 21, 21, 21),
                           elevation: 2.0,

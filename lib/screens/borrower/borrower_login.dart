@@ -39,12 +39,12 @@ class _BorrowerLoginState extends State<BorrowerLogin> {
                 // const SizedBox(
                 //   height: 30,
                 // ),
-                reusableTextField("Enter Email", Icons.person_outline, false,
+                reusableTextField("Enter email", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Password", Icons.lock_outline, true,
+                reusableTextField("Enter password", Icons.lock_outline, true,
                     _passwordTextController),
                 const SizedBox(
                   height: 5,
@@ -60,9 +60,13 @@ class _BorrowerLoginState extends State<BorrowerLogin> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const BorrowerPage()));
+                    print(value);
+                    print(value.user!.email);
+                    print(value.user!.uid);
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
+                  getUserData();
                 }),
                 signUpOption()
               ],
@@ -77,7 +81,7 @@ class _BorrowerLoginState extends State<BorrowerLogin> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Don't have account?",
+        const Text("Don't have an account?",
             style: TextStyle(color: Color.fromARGB(179, 17, 17, 17))),
         GestureDetector(
           onTap: () {
@@ -93,6 +97,16 @@ class _BorrowerLoginState extends State<BorrowerLogin> {
         )
       ],
     );
+  }
+
+  Future<void> getUserData() async {
+    User user;
+    User userData = await FirebaseAuth.instance.currentUser!;
+    setState(() {
+      user = userData;
+      print(userData.uid);
+      print(userData.email);
+    });
   }
 
   // Widget forgetPassword(BuildContext context) {

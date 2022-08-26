@@ -1,3 +1,4 @@
+import 'package:cl1m_inventory/landing_page.dart';
 import 'package:cl1m_inventory/reusable_widgets/reusable_widget.dart';
 import 'package:cl1m_inventory/screens/borrower/borrower_page.dart';
 import 'package:cl1m_inventory/screens/dashboard.dart';
@@ -18,6 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _userTypeTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,16 +33,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
       body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            hexStringToColor("F48818"),
-            hexStringToColor("F9CB9C"),
-            hexStringToColor("FFB482")
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-          child: SingleChildScrollView(
-              child: Padding(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          hexStringToColor("F48818"),
+          hexStringToColor("F9CB9C"),
+          hexStringToColor("FFB482")
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        child: SingleChildScrollView(
+          child: Padding(
             padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
             child: Column(
               children: <Widget>[
@@ -63,27 +65,69 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 firebaseUIButton(context, "Sign Up", () {
-                  FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    FirebaseFirestore.instance
-                        .collection('UserData')
-                        .doc(value.user!.uid)
-                        .set({"email": value.user!.email});
-                    print("Created New Account");
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BorrowerPage()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                  FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: _emailTextController.text,
+                      password: _passwordTextController.text);
+                  addUserDetails(
+                      _emailTextController.text, _userTypeTextController.text);
+                  print("Created New Account");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => MaterialApp(
+                        home: AlertDialog(
+                          title: const Text('Successfully created an account'),
+                          content: const Text('Proceed to Login'),
+                          actions: <Widget>[
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xfffe5a1d),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const LandingPage(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Approve',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+
+                  //     .then((value) {
+                  //   FirebaseFirestore.instance
+                  //       .collection('UserData')
+                  //       .doc(value.user!.uid)
+                  //       .set({"email": value.user!.email});
+                  //   print("Created New Account");
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => const BorrowerPage()));
+                  // }).onError((error, stackTrace) {
+                  //   print("Error ${error.toString()}");
+                  // });
                 })
               ],
             ),
-          ))),
+          ),
+        ),
+      ),
     );
+  }
+
+  Future addUserDetails(String email, String usertype) async {
+    await FirebaseFirestore.instance.collection('UserData').add({
+      'email': email,
+      'usertype': usertype,
+    });
   }
 }

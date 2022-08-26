@@ -1,3 +1,4 @@
+import 'package:cl1m_inventory/screens/borrower/borrow/item_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -117,13 +118,13 @@ class _MyHomePageState extends State<Borrow> {
               primary: const Color(0xffe9692c),
             ),
             onPressed: () {
-              // agree ? _doSomething : null;
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const BorrowForm(),
-              //   ),
-              // );
+              agree ? _doSomething : null;
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FetchBorrowItemList(),
+                ),
+              );
             },
             child: const Text(
               'ACCEPT',

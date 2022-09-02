@@ -1,6 +1,7 @@
 import 'package:cl1m_inventory/landing_page.dart';
 import 'package:cl1m_inventory/screens/borrower/borrow/borrow.dart';
 import 'package:cl1m_inventory/screens/borrower/borrower_login.dart';
+import 'package:cl1m_inventory/screens/borrower/return/borrowed_item_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -43,129 +44,134 @@ class BorrowerPage extends StatelessWidget {
       ),
       backgroundColor: const Color(0xffffdead),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // children: [
-                //   const Icon(Icons.menu, color: Colors.white, size: 60.0),
-                //   Image.asset("assets/inventory.png", width: 60.0)
-                // ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: Text(
-                "Dashboard",
-                style: TextStyle(
-                    color: Color.fromARGB(225, 21, 21, 21),
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.start,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-              child: Center(
-                child: Wrap(
-                  spacing: 20.0,
-                  runSpacing: 20.0,
-                  children: [
-                    SizedBox(
-                      width: 150.0,
-                      height: 150.0,
-                      child: InkWell(
-                        onTap: () {
-                          //BUTTON ACTION
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Borrow()));
-                        },
-                        child: Card(
-                          color: const Color(0xffe9692c),
-                          elevation: 2.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0)),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                children: [
-                                  Image.asset("assets/bo.png", width: 64.0),
-                                  const SizedBox(height: 10.0),
-                                  const Text("Borrow",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      )),
-                                  const SizedBox(height: 5.0),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 150.0,
-                      height: 150.0,
-                      child: InkWell(
-                        // onTap: () {
-                        //   //BUTTON ACTION
-                        //   Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //           builder: (context) => BorrowedList()));
-                        // },
-                        child: Card(
-                          color: const Color(0xffe9692c),
-                          elevation: 2.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0)),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                children: [
-                                  Image.asset("assets/return.png", width: 64.0),
-                                  const SizedBox(height: 10.0),
-                                  const Text("Return",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      )),
-                                  const SizedBox(height: 5.0),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 150.0,
-                      height: 150.0,
-                      child: InkWell(
-                          // onTap: () {
-                          //   //BUTTON ACTION
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) => const BorrowForm()));
-                          // },
-                          ),
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // children: [
+                  //   const Icon(Icons.menu, color: Colors.white, size: 60.0),
+                  //   Image.asset("assets/inventory.png", width: 60.0)
+                  // ],
                 ),
               ),
-            ),
-          ],
+              const Padding(
+                padding: EdgeInsets.all(18.0),
+                child: Text(
+                  "Dashboard",
+                  style: TextStyle(
+                      color: Color.fromARGB(225, 21, 21, 21),
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.start,
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                child: Center(
+                  child: Wrap(
+                    spacing: 20.0,
+                    runSpacing: 20.0,
+                    children: [
+                      SizedBox(
+                        width: 150.0,
+                        height: 150.0,
+                        child: InkWell(
+                          onTap: () {
+                            //BUTTON ACTION
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Borrow()));
+                          },
+                          child: Card(
+                            color: const Color(0xffe9692c),
+                            elevation: 2.0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/bo.png", width: 64.0),
+                                    const SizedBox(height: 10.0),
+                                    const Text("Borrow",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.0,
+                                        )),
+                                    const SizedBox(height: 5.0),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 150.0,
+                        height: 150.0,
+                        child: InkWell(
+                          onTap: () {
+                            //BUTTON ACTION
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ReturnItemList()));
+                          },
+                          child: Card(
+                            color: const Color(0xffe9692c),
+                            elevation: 2.0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/return.png",
+                                        width: 64.0),
+                                    const SizedBox(height: 10.0),
+                                    const Text("Return",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.0,
+                                        )),
+                                    const SizedBox(height: 5.0),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 150.0,
+                        height: 150.0,
+                        child: InkWell(
+                            // onTap: () {
+                            //   //BUTTON ACTION
+                            //   Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: (context) => const BorrowForm()));
+                            // },
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
